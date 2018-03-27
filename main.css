@@ -17,8 +17,21 @@ code {
 
 h1 {
   font-family: 'Lato', sans-serif;
+  /* color: #2f4f4f; */
+}
+
+a {
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: red;
+}
+
+a:hover {
+  text-decoration-color: hotpink;
+  background-color: #ffe6f2;
 }
 
 h2 {
   font-family: 'Lato', sans-serif;
+  /* color: #737373; */
 }

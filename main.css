@@ -4,10 +4,34 @@ body {
   padding: 5%;
 }
 
+.navbar {
+    /* overflow: hidden; */
+    background-color: white;
+    border-bottom: solid;
+    position: fixed;
+    top: 0;
+    width: 90vw;
+    max-width: 30em;
+}
+
+.main {
+    margin-top: 4em;
+    /* margin-top: 10vw; */
+}
+
 p {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.2em;
+  font-size: 1.1em;
   line-height: 1.4;
+}
+
+.alignleft {
+  float: left;
+  line-height: 1.55;
+}
+
+.alignright {
+  float: right;
 }
 
 code {
@@ -21,6 +45,7 @@ h1 {
 }
 
 a {
+  font-family: 'Lato', sans-serif;
   color: black;
   text-decoration: underline;
   text-decoration-color: red;
@@ -34,4 +59,8 @@ a:hover {
 h2 {
   font-family: 'Lato', sans-serif;
   /* color: #737373; */
+}
+
+.unselected {
+  text-decoration: none;
 }

@@ -161,6 +161,7 @@ body {
 
 .reveal code {
   font-family: monospace;
+  background-color: #EEE;
   text-transform: none; }
 
 .reveal pre code {

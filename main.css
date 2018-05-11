@@ -14,7 +14,8 @@
 
 .alignleft {
   float: left;
-  line-height: 1.55;
+  /* line-height: 1.55; */
+  /* font-family: 'Courier', monospace; */
 }
 
 .alignright {
@@ -68,4 +69,15 @@ span {
 
 h2 {
   font-family: 'Lato', sans-serif;
+}
+
+/* For svg */
+
+circle { transition: fill .4s ease; }
+
+#big_circle circle {
+    fill-opacity:0;
+}
+#big_circle:hover circle {
+    fill-opacity:1;
 }

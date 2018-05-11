@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   id="svg4222"
+   viewBox="0 0 500.00001 500.00001"
+   height="250"
+   width="250">
+  <defs
+     id="defs4224" />
+  <metadata
+     id="metadata4227">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+
+
+  <style>
+
+    circle { transition: fill-opacity 1.5s ease; }
+
+    #big_circle circle
+    {
+      fill-opacity: 0;
+    }
+
+    #big_circle:hover circle
+    {
+      fill-opacity: 1;
+    }
+
+    path { transition: stroke 0.5s ease; }
+
+    #big_circle path
+    {
+      stroke: #ffda39;
+    }
+
+    #big_circle:hover path
+    {
+      stroke: hotpink;
+    }
+
+
+  </style>
+
+  <g
+     transform="translate(0,-552.36213)"
+     id="big_circle">
+    <circle
+       transform="scale(-1,-1)"
+       r="236.3757"
+       cy="-802.36212"
+       cx="-250"
+       id="path4774"
+       fill-opacity="0"
+       style="fill:#ffe6f2;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.94117647;opacity:1" />
+    <text
+       id="text4776"
+       y="777.42316"
+       x="250.10986"
+       style="font-style:normal;font-weight:normal;font-size:90px;line-height:100%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Courier New';-inkscape-font-specification:'Courier New';line-height:100%;"
+         y="777.42316"
+         x="250.10986"
+         id="tspan4778">Liam</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Courier New';-inkscape-font-specification:'Courier New';line-height:100%;"
+         id="tspan4780"
+         y="865.92316"
+         x="250.10986">Kirwin</tspan></text>
+    <path
+       id="path6232"
+       d="m 148.00764,790.74267 209.85343,0"
+       stroke="#ffda39"
+       style="fill:none;fill-rule:evenodd;stroke-width:2.99999976;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       id="path6232-4"
+       d="m 91.737367,877.60578 315.288103,0"
+       stroke="#ffda39"
+       style="fill:none;fill-rule:evenodd;stroke-width:2.99999976;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+
+</svg>

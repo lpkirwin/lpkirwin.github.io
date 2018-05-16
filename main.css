@@ -10,6 +10,9 @@
 
 .main {
     margin-top: 4em;
+    background-color: #ffffff;
+    border-bottom: solid;
+    border-color: #000000;
 }
 
 .alignleft {
@@ -63,6 +66,10 @@ a:hover {
   background-position: left bottom;
 }
 
+.img_link {
+  background: #00000000;
+}
+
 span {
   color: black;
 }
@@ -71,13 +78,10 @@ h2 {
   font-family: 'Lato', sans-serif;
 }
 
-/* For svg */
-
-circle { transition: fill .4s ease; }
-
-#big_circle circle {
-    fill-opacity:0;
-}
-#big_circle:hover circle {
-    fill-opacity:1;
+hr {
+  border: 0;
+  width: 80%;
+  color: black;
+  background-color: black;
+  height: 1.6px;
 }

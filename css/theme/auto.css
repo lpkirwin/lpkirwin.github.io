@@ -301,6 +301,7 @@ logo {
   display: block;
   position: relative;
   align: center;
+  top: 300px;
   padding: 20px;
   /* min-width: 5000px; */
   background: rgba(0, 0, 0, 0.7); }
@@ -314,4 +315,14 @@ logo {
 
 .reveal .img-right {
   margin-bottom: -3px;
+}
+
+.reveal bluebox {
+  border-style: solid;
+  border-color: #009FE3;
+  border-width: thick;
+  padding: 10px;
+  font-family: monospace;
+  text-align: left;
+  color: #009FE3;
 }

@@ -22,7 +22,7 @@ Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most ou
 
 Test edit.
 
-<iframe width="560" height="315" src="temp-plot.html" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="{{ "/img/tmp-plot.html" | absolute_url }}" frameborder="0" allowfullscreen></iframe>
 
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll

@@ -22,7 +22,7 @@ Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most ou
 
 Test edit.
 
-<iframe width="100%" height="500" src="{{ "/img/temp-plot.html" | absolute_url }}" frameborder="0" allowfullscreen></iframe>
+<iframe width="740" height="450" src="{{ "/img/temp-plot.html" | absolute_url }}" frameborder="0" allowfullscreen></iframe>
 
 [^1]: Test footnote.
 

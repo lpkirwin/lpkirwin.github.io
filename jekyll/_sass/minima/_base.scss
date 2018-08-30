@@ -113,7 +113,7 @@ a {
 
   &:visited {
     // color: darken($brand-color, 15%);
-    color: darken($brand-color, 5%);
+    color: darken($brand-color, 0%);
   }
 
   &:hover {
@@ -155,9 +155,9 @@ blockquote {
 pre,
 code {
   @include relative-font-size(0.9375);
-  border: 1px solid $grey-color-light;
+  border: 1px solid $grey-color;
   border-radius: 3px;
-  background-color: #eef;
+  background-color: #fafafa;
 }
 
 code {

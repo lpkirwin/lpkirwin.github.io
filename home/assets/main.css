@@ -79,11 +79,11 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-  color: #ff9966;
+  color: #efab8f;
   text-decoration: none;
   -webkit-transition: 0.4s ease; }
   a:visited {
-    color: #ff884d; }
+    color: #efab8f; }
   a:hover {
     color: #000;
     text-decoration: underline; }
@@ -111,9 +111,9 @@ blockquote {
 pre,
 code {
   font-size: 15px;
-  border: 1px solid #a8a8a8;
+  border: 1px solid #424242;
   border-radius: 3px;
-  background-color: #eef; }
+  background-color: #fafafa; }
 
 code {
   padding: 1px 5px; }
@@ -232,10 +232,10 @@ table {
   @media screen and (max-width: 600px) {
     .site-nav {
       position: absolute;
-      top: 9px;
+      top: 10px;
       right: 15px;
       background-color: #fdfdfd;
-      border: 2px solid #000;
+      border: 2px solid #FFF;
       border-radius: 0px;
       text-align: right; }
       .site-nav label[for="nav-trigger"] {
@@ -254,7 +254,7 @@ table {
         padding-top: 7px;
         text-align: center; }
         .site-nav .menu-icon > svg {
-          fill: #000; }
+          fill: #FFF; }
       .site-nav input ~ .trigger {
         clear: both;
         display: none; }
@@ -398,9 +398,9 @@ table {
 .highlight {
   background: #fff; }
   .highlighter-rouge .highlight {
-    background: #eef; }
+    background: #f2dbd9; }
   .highlight .c {
-    color: #998;
+    color: #819ae4;
     font-style: italic; }
   .highlight .err {
     color: #a61717;
@@ -416,7 +416,7 @@ table {
     color: #999;
     font-weight: bold; }
   .highlight .c1 {
-    color: #998;
+    color: #819ae4;
     font-style: italic; }
   .highlight .cs {
     color: #999;
@@ -454,6 +454,8 @@ table {
     font-weight: bold; }
   .highlight .kd {
     font-weight: bold; }
+  .highlight .kn {
+    font-weight: bold; }
   .highlight .kp {
     font-weight: bold; }
   .highlight .kr {
@@ -477,10 +479,10 @@ table {
   .highlight .ni {
     color: #800080; }
   .highlight .ne {
-    color: #900;
+    color: #ba57db;
     font-weight: bold; }
   .highlight .nf {
-    color: #900;
+    color: #ba57db;
     font-weight: bold; }
   .highlight .nn {
     color: #555; }

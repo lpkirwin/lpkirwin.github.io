@@ -20,6 +20,24 @@ print_hi('Tom')
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 
+{% highlight python %}
+# Do the machine learning
+from sklearn.linear_model import LinearRegression
+lm = LinearRegression()
+lm.fit(X_tr, y_tr)
+lm.predict(X_te)
+print("Sick! Nice work.")
+{% endhighlight %}
+
+
+
+{% highlight python %}
+def cool_math(x, y):
+    a = x**y
+    b = y**x
+    return a + b + 76.2
+{% endhighlight %}
+
 Test edit.
 
 <iframe width="740" height="450" src="{{ "/img/temp-plot.html" | absolute_url }}" frameborder="0" allowfullscreen></iframe>

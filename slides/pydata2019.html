@@ -4,14 +4,14 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>How am I going to deal with all of these cats? | Pydata London 2019</title>
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/white.css">
+		<link rel="stylesheet" href="css/theme/custom.css">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/github.css">
+		<link rel="stylesheet" href="lib/css/lightfair.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -27,6 +27,9 @@
 		<div class="reveal">
 			<div class="slides">
 				<section data-background-iframe="cats.html">
+				<!-- <section> -->
+					<!-- <iframe class="big-iframe" data-src="cats.html"></iframe> -->
+					<br><br>
 					<h1>How am I going to deal with all of these cats?</h1>
 				</section>
 				<section>
@@ -39,17 +42,21 @@
 						est = LinearRegression()
 						est.fit(X, y)
 
-						def func(x):
-							return x**2
+						def square_int(x):
+						    if not isinstance(x, int):
+							    return None
+						    return f"The square of {x} is {x**2}"
+							
+						square_int(x=5)
+
+						d = {
+						    "a": [1, 2, 3],
+						    "b": ["4", "5", "6"]
+						}
 					</code></pre>
 				</section>
 				<section>
 					\[f(a) = \frac{1}{2\pi i} \oint\frac{f(z)}{z-a}dz\]
-				</section>
-				<section><img src="img/cat.svg" alt="Cat!"></section>
-				<section data-background-image="img/cat.svg" 
-						 data-background-size="60px"
-						 data-background-repeat="repeat">
 				</section>
 			</div>
 		</div>
@@ -57,10 +64,11 @@
 		<script src="js/reveal.js"></script>
 
 		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				width: 1200,
+				height: 800,
+				preloadIframes: false,
+				viewDistance: 2,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },

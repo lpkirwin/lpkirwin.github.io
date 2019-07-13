@@ -315,6 +315,16 @@
 				<section><img src="img/catboost.PNG" alt="" width=100%></section>
 				<section><img src="img/catboost2.PNG" alt="" width=100%></section>
 				<section><img src="img/catboost3.PNG" alt="" width=100%></section>
+				<section>
+					<h3>LightGBM example</h3>
+					<ul>
+						<li>Simulated high cardinality data</li>
+						<li>Varying values of <code>cat_smooth</code></li>
+					</ul>
+				</section>
+				<section data-transition="fade-out"><img src="img/lightgbm-0.png" alt="" width=100%></section>
+				<section data-transition="fade"><img src="img/lightgbm-1.png" alt="" width=100%></section>
+				<section data-transition="fade-in"><img src="img/lightgbm-2.png" alt="" width=100%></section>
 
 				<section>
 					<h3>CatBoost</h3>
@@ -322,7 +332,16 @@
 						<li>Target encoding, but resistent to overfitting</li>
 						<li>Several random permutations of data</li>
 						<li>Creates a 'running total' set of target statistics</li>
-						<li>Relevant hyperparameter: <code>one_hot_max_size</code></li>
+						<li>Relevant hyperparameters:
+							<code>one_hot_max_size</code>, 
+							<code>simple_ctr</code>, 
+							<code>combinations_ctr</code>, 
+							<code>per_feature_ctr</code>, 
+							<code>counter_calc_method</code>, 
+							<code>max_ctr_complexity</code>, 
+							<code>prior</code>, 
+							<code>ctr_leaf_count_limit</code>
+						</li>
 					</ul>
 				</section>
 				<section data-transition="none-out">
@@ -359,7 +378,7 @@
 					<ul>
 						<li>No approach that's always best</li>
 						<li>Easy answer is "try everything and test"</li>
-						<li>I hope there's been some ideas/intuition here that can point you in the right direction</li>
+						<li>I hope there's been some ideas/intuition here that can point you in the right direction in some real-world problem</li>
 					</ul>
 				</section>
 				<section data-background-image="img/cat_thanks.gif" data-background-size="contain">

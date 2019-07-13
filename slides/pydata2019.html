@@ -1,0 +1,416 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>How am I going to deal with all of these cats? | Pydata London 2019</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/custom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/lightfair.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-iframe="cats.html">
+				<!-- <section> -->
+					<!-- <iframe class="big-iframe" data-src="cats.html"></iframe> -->
+					<br><br>
+					<h1>How am I going to deal with all of these cats?</h1>
+				</section>
+
+				<section>
+					<h3>About me</h3>
+					<ul>
+						<li>Liam Kirwin</li>
+						<li>Currently working on risk and fraud models at QBE insurance</li>
+						<li>QBE has lots of messy categorical data</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>About this talk</h3>
+					<ul>
+						<li>In case it wasn't clear by now, 'cat' is short for categorical</li>
+						<li>Categorical variables are very common in real-world data</li>
+						<li>There are a lot of different strategies for dealing with them</li>
+						<li>I hope to provide some intuition and a bit of a roadmap</li>
+						<li>The context will be 'standard' supervised learning</li>
+						<li>There will be a tasteful number of cat GIFs</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>The plan, in three parts</h3>
+					<ol>
+						<li>Encodings</li>
+						<li>General strategy</li>
+						<li>Gradient boosting packages</li>
+					</ol>
+				</section>
+
+				<section>
+					<h3>Ordinal vs. nominal data</h3>
+					Ordinal (ordered): 
+					<pre><code class="hljs" data-trim>
+						["agree", "neutral", "disagree"]
+					</code></pre>
+					Nominal (unordered):
+					<pre><code class="hljs" data-trim>
+						["fuzzy", "smooth", "soft"]
+					</code></pre>
+				</section>
+
+				<!-- <section>
+					<h3>Linear vs. tree-based models</h3>
+					Loosely defined:
+					<ul>
+						<li>Linear, e.g. linear regession, logistic regression, SVM, kernel regression, neural networks</li>
+						<li>Tree-based e.g. decision tree, random forest, XGBoost, LightGBM, CatBoost</li>
+					</ul>
+				</section> -->
+
+
+
+
+
+
+				<section data-background-image="img/cat_code.gif" data-background-size="contain">
+					<br><br><br><h2><u>Section 1</u><br>cat encodings</h2>
+				</section>
+
+
+
+				<section>
+					<h3>Label encoding</h3>
+					<p>Simple 1-for-1 replacement with arbitrary integer.</p>
+					<pre><code class="hljs" data-trim>
+						["fuzzy", "smooth", "soft", "smooth"] -> [0, 1, 2, 1]
+					</code></pre>
+					<ul>
+						<li>May imply ordered relationship (!)</li>
+						<ul>
+							<li>If ordered, maybe OK</li>
+							<li>If unordered, almost certainly not OK</li>
+						</ul>
+					</ul>
+				</section>
+
+				<section>
+					<h3>One-hot encoding</h3>
+					<p> New column for each level.</p>
+					<pre><code class="hljs" data-trim>
+						["fuzzy", "smooth", "soft", "smooth"] -> [[1, 0, 0],
+						                                          [0, 1, 0],
+						                                          [0, 0, 1],
+						                                          [0, 1, 0]]
+					</code></pre>
+					<ul>
+						<li>Standard recommended approach for many algorithms</li>
+						<li>High cardinality will create huge number of features</li>
+						<li>This can have memory/performance/quality impacts</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Count encoding</h3>
+					<p>Replace each level with the count of times it appears in the training data.</p>
+					<pre><code class="hljs" data-trim>
+						["fuzzy", "smooth", "soft", "smooth"] -> [1, 2, 1, 2]
+					</code></pre>
+					<ul>
+						<li>Similar-ish to label encoding</li>
+						<li>Better in general, because it's a plausibly useful ordering</li>
+						<li>For example, easy for tree-based model to create 'other' category for small groups</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Basic target encoding</h3>
+					<p>Replace each level with the in-group mean of the target</p>
+					<pre><code class="hljs" data-trim>
+						  g       y            z
+						------   ---          ---
+						fuzzy     3     ->    3.0
+						smooth    4           4.5
+						soft      1           1.0
+						smooth    5           4.5
+					</code></pre>
+					<ul>
+						<li>Careful: this <em>can</em> work well, but is leaky and can overfit easily</li>
+						<li><em>Definitely</em> don't calculate this using your holdout set(s)</li>
+					</ul>
+					<!-- <p class="footnote">Footnote text here.</p> -->
+				</section>
+
+				<section>
+					<h3>Leave one out</h3>
+					<p>Target in each row 'left out' from calculation of group mean</p>
+					<pre><code class="hljs" data-trim>
+						  g       y            z
+						------   ---          ---
+						fuzzy     3           4.0
+						fuzzy     4           3.0
+						soft      1     ->    0.0
+						soft      0           1.0
+						smooth    4           6.0
+						smooth    5           5.7
+						smooth    6           5.3
+						smooth    7           5.0
+					</code></pre>
+					<ul>
+						<li>Same idea, but a bit less leaky</li>
+						<li>Still potential for overfitting</li>
+						<li>E.g. implementation <a href="http://contrib.scikit-learn.org/categorical-encoding/leaveoneout.html">here</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Smoothed target encoding</h3>
+					<pre><code class="hljs" data-trim>
+						z = w * group_mean + (1-w) * global_mean
+					</code></pre>
+					<ul>
+						<li>Where <code>w</code> is larger for larger groups, so eg:</li>
+						<ul>
+							<li>Small groups extremely close to global mean</li>
+							<li>Medium groups a 50/50 blend</li>
+							<li>Large groups quite close to group mean</li>
+						</ul>
+						<li>E.g. implementation <a href="http://contrib.scikit-learn.org/categorical-encoding/targetencoder.html">here</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Embeddings</h3>
+					<ul>
+						<li>Often used in neural nets (eg word2vec)</li>
+						<li>Can be very powerful, but not going to cover today</li>
+					</ul>
+				</section>
+
+
+
+
+
+
+				<section data-background-image="img/cat_strategy2.gif" data-background-size="contain">
+					<br><br><br><h2><u>Section 2</u><br>cat strategies</h2>
+				</section>
+
+
+				<section>
+					<h3>Cleaning</h3>
+					<ul>
+						<li>Text conforming, basic techniques</li>
+						<li><a href="https://github.com/seatgeek/fuzzywuzzy">fuzzywuzzy</a></li>
+						<li>
+							<a href="https://tdda.readthedocs.io/en/latest/rexpy.html">rexpy</a> 
+							<a href="https://rexpy.herokuapp.com/">(live demo)</a>
+						</li>
+						<li><a href="https://dirty-cat.github.io/stable/">dirty-cat</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>dirty-cat (1/2)</h3>
+					<pre><code class="hljs" data-trim>
+						from dirty_cat import SimilarityEncoder
+						
+						similarity_encoder = SimilarityEncoder(similarity='ngram')
+						transformed_values = similarity_encoder.fit_transform(
+							sorted_values.reshape(-1, 1))
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>dirty-cat (2/2)</h3>
+					<img src="img/dirty_cat.png" alt="" width="50%">
+				</section>
+
+				<section>
+					<h3>Think outside the dataset</h3>
+					<ul>
+						<li>Is there some available external data that explains how groups are related</li>
+						<ul>
+							<li>For geographic areas: lat/lng, elevation, population density</li>
+							<li>For wines: alcohol/sugar levels, online ratings</li>
+							<li>For browsers: popularity, release date</li>
+						</ul>
+						<li>Related: can you roll small groups up into larger ones?</li>
+						<li>If you have keyword type data, can you use pre-trained embeddings?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>What encoding should I use?</h3>
+					<ul>
+						<li>Few categories? Just one-hot it</li>
+						<li>Many categories? Lean toward target encoding</li>
+						<li>Do you care about interactions? Careful with target encoding</li>
+						<li>Think about interpretablilty and maintainability, if needed</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Feature importance</h3>
+					In general, don't trust algo's 'default' feature importance. My suggestions would be:
+					<ul>
+						<li>For actual predictive power, use permutation importance 
+							(eg <a href="https://eli5.readthedocs.io/en/latest/blackbox/permutation_importance.html">eli5</a>) 
+							on a holdout set</li>
+						<li>For relative effects of different groups, try <a href="https://github.com/slundberg/shap">SHAP values</a></li>
+					</ul>
+				</section>
+
+
+
+
+
+
+				<section data-background-image="img/cat_in_tree.gif" data-background-size="contain">
+					<br><br><br><h2><u>Section 3</u><br>cats in trees</h2>
+				</section>
+
+
+
+				<section>
+					<h3>What do popular boosting packages do?</h3>
+					<ul>
+						<li><b>XGBoost.</b> Similar to sklearn, only accepts numeric data</li>
+						<li><b>LightGBM.</b> Category-aware splits during tree building</li>
+						<li><b>CatBoost.</b> Overfitting-resistant target encoding</li>
+					</ul>
+				</section>
+				
+				<section><img src="img/onehot_tree.PNG" alt="" width=100%></section>
+
+				<section>
+					<h3>LightGBM</h3>
+					<ul>
+						<li>Category-aware splits: ignores feature value</li>
+						<li>Before splitting, orders groups based on target</li>
+						<li>See <a href="http://www.csiss.org/SPACE/workshops/2004/SAC/files/fisher.pdf">Fisher (1958)</a> for a reference</li>
+						<li>Relevant hyperparameters:</li>
+						<ul>
+							<li><code>cat_smooth</code>: smooths target values for small groups</li>
+							<li><code>max_cat_to_onehot</code>: below this, just use one hot</li>
+						</ul>
+					</ul>
+				</section>
+				<section><img src="img/catboost.PNG" alt="" width=100%></section>
+				<section><img src="img/catboost2.PNG" alt="" width=100%></section>
+				<section><img src="img/catboost3.PNG" alt="" width=100%></section>
+				<section>
+					<h3>LightGBM example</h3>
+					<ul>
+						<li>Simulated high cardinality data</li>
+						<li>Varying values of <code>cat_smooth</code></li>
+					</ul>
+				</section>
+				<section data-transition="fade-out"><img src="img/lightgbm-0.png" alt="" width=100%></section>
+				<section data-transition="fade"><img src="img/lightgbm-1.png" alt="" width=100%></section>
+				<section data-transition="fade-in"><img src="img/lightgbm-2.png" alt="" width=100%></section>
+
+				<section>
+					<h3>CatBoost</h3>
+					<ul>
+						<li>Target encoding, but resistent to overfitting</li>
+						<li>Several random permutations of data</li>
+						<li>Creates a 'running total' set of target statistics</li>
+						<li>Relevant hyperparameters:
+							<code>one_hot_max_size</code>, 
+							<code>simple_ctr</code>, 
+							<code>combinations_ctr</code>, 
+							<code>per_feature_ctr</code>, 
+							<code>counter_calc_method</code>, 
+							<code>max_ctr_complexity</code>, 
+							<code>prior</code>, 
+							<code>ctr_leaf_count_limit</code>
+						</li>
+					</ul>
+				</section>
+				<section data-transition="none-out">
+					<pre><code class="hljs" data-trim>
+						  g       y            z 
+						------   ---          ---
+						fuzzy     4            - 
+						soft      1     ->     - 
+						smooth    4            - 
+						fuzzy     3           4.0
+						smooth    6           4.3
+						soft      0           1.0
+						smooth    7           5.0
+						smooth    5           5.7
+					</code></pre>
+				</section>
+				<section data-transition="none-in">
+					<pre><code class="hljs" data-trim>
+						  g       y            z            z
+						------   ---          ---          ---
+						fuzzy     4            -           3.8
+						soft      1     ->     -     ->    3.8
+						smooth    4            -           3.8
+						fuzzy     3           4.0          3.9
+						smooth    6           4.3          4.1
+						soft      0           1.0          2.4
+						smooth    7           5.0          4.2
+						smooth    5           5.7          5.2
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Final thoughts</h3>
+					<ul>
+						<li>No approach that's always best</li>
+						<li>Easy answer is "try everything and test"</li>
+						<li>I hope there's been some ideas/intuition here that can point you in the right direction in some real-world problem</li>
+					</ul>
+				</section>
+				<section data-background-image="img/cat_thanks.gif" data-background-size="contain">
+					<br><br><br><h2>Thanks!</h2>
+				</section>
+
+				<!-- <section>
+					\[f(a) = \frac{1}{2\pi i} \oint\frac{f(z)}{z-a}dz\]
+				</section> -->
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			Reveal.initialize({
+				width: 1600,
+				height: 900,
+				// width: "100%",
+				// height: "100%",
+				preloadIframes: false,
+				viewDistance: 2,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

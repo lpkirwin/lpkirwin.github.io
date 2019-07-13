@@ -45,4 +45,13 @@ Ideas for simulations
 
 - Does catboost's target encoding ignore interactions between variables?
 - How much do different encoding strategies reduce overfitting?
-  - 
+
+https://rexpy.herokuapp.com/
+123-AA-971
+12-DQ-802
+198-AA-045
+1-BA-834
+999-JA-922
+12-UT-8255
+198-ZZ-erwr
+1-RF-834

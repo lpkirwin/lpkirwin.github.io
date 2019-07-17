@@ -1,0 +1,38 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+graph [ranksep=equally, splines=polyline] ;
+edge [fontname=helvetica] ;
+0 [label="age <= 58.6\nsamples = 100.0%\nvalue = 6.7", fillcolor="#e5813991"] ;
+1 [label="age <= 7.8\nsamples = 59.0%\nvalue = 8.9", fillcolor="#e58139ca"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="age <= 4.2\nsamples = 8.0%\nvalue = 3.4", fillcolor="#e581393d"] ;
+1 -> 2 ;
+3 [label="samples = 4.2%\nvalue = 1.9", fillcolor="#e5813914"] ;
+2 -> 3 ;
+4 [label="samples = 3.8%\nvalue = 5.2", fillcolor="#e581396a"] ;
+2 -> 4 ;
+5 [label="age <= 37.0\nsamples = 51.0%\nvalue = 9.7", fillcolor="#e58139e0"] ;
+1 -> 5 ;
+6 [label="samples = 29.8%\nvalue = 10.9", fillcolor="#e58139ff"] ;
+5 -> 6 ;
+7 [label="samples = 21.2%\nvalue = 8.1", fillcolor="#e58139b5"] ;
+5 -> 7 ;
+8 [label="age <= 76.8\nsamples = 41.0%\nvalue = 3.5", fillcolor="#e581393f"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="age <= 58.9\nsamples = 18.0%\nvalue = 5.3", fillcolor="#e581396d"] ;
+8 -> 9 ;
+10 [label="samples = 0.8%\nvalue = 2.9", fillcolor="#e581392e"] ;
+9 -> 10 ;
+11 [label="samples = 17.2%\nvalue = 5.4", fillcolor="#e5813970"] ;
+9 -> 11 ;
+12 [label="age <= 92.7\nsamples = 23.0%\nvalue = 2.1", fillcolor="#e581391b"] ;
+8 -> 12 ;
+13 [label="samples = 13.4%\nvalue = 2.9", fillcolor="#e581392e"] ;
+12 -> 13 ;
+14 [label="samples = 9.6%\nvalue = 1.1", fillcolor="#e5813900"] ;
+12 -> 14 ;
+{rank=same ; 0} ;
+{rank=same ; 1; 8} ;
+{rank=same ; 2; 5; 9; 12} ;
+{rank=same ; 3; 4; 6; 7; 10; 11; 13; 14} ;
+}

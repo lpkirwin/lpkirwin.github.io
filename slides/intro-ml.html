@@ -1,0 +1,303 @@
+<html>
+	<head>
+		<title>Intro to machine learning models</title>
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/intro_ml.css">
+		<!-- <script src="js/plotly-latest.min.js"></script> -->
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	</head>
+	<body>
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section class="left">
+					<h3>Intro to machine learning models</h3>
+					<hr>
+					<table><tr>
+					<td><p>
+						<br> Liam Kirwin <br>
+					</p></td>
+					</tr></table>
+				</section>
+				
+				<section class="left">
+					<h3>Today:</h3>
+					<br>
+					<ul>
+						<li><b>Talk about some families of machine learning models</b></li>
+						<ul>
+							<li>Linear models</li>
+							<li>Decision trees</li>
+							<li>Nearest neighbor models</li>
+							<li>Ensemble models (specifically: random forests)</li>
+						</ul>
+						<br>
+						<li><b>Two super simple examples with made-up datasets</b></li>
+					</ul>
+				</section>
+				
+				<section class="left">
+					<h3>Couple points before we start:</h3>
+					<br>
+					<ul>
+						<li><b>General theme:</b> trade-offs between simple and complex models</li>
+						<ul>
+							<li>Underfitting versus overfitting</li>
+							<li>Transparency versus 'black boxes'</li>
+						</ul>
+						<br>
+						<li>The examples we'll look at are too simple for machine learning to add much value
+						<ul>
+							<li>Today's examples: 200-500 rows of data, 2-3 columns</li>
+							<li>(Some) Real-world datasets: millions of rows, 100-150 columns</li>
+							<li>Or, in NLP: hundreds of thousands of distinct words</li>
+						</ul>
+					</ul>
+				</section>
+				
+				<section class="left">
+					<h3>Made-up dataset #1:</h3>
+					<h6>Age versus running speed</h6>
+				</section>
+					
+				<section data-background-iframe="plotly/running_speed_plain.html" data-background-interactive>
+				</section>
+				
+				<section>
+					
+					<section>
+						<h4><blue>Linear models</blue></h4>
+						<code>y = <orange>a</orange> + <orange>b</orange>*x</code>
+						<br>
+						<small class="fragment">or, can add<br>a little more flexibility:</small>
+						<br>
+						<code class="fragment">y = <orange>a</orange> + <orange>b</orange>*x + <orange>c</orange>*x<sup>2</sup></code>
+						<br>
+						<small class="fragment">etc...</small>
+					</section>
+					
+					<section data-background-color="#ffffff">
+					</section>
+					
+					<section data-background-iframe="plotly/running_speed_plain.html" data-background-interactive>
+					</section>
+					
+					<section data-background-iframe="plotly/running_speed_lm1.html" data-background-interactive>
+					</section>
+					
+					<section data-background-iframe="plotly/running_speed_lm2.html" data-background-interactive>
+					</section>
+					
+					<section data-background-iframe="plotly/running_speed_lm3.html" data-background-interactive>
+					</section>
+					
+				</section>
+				
+				<section>
+					
+					<section class="center">
+						<h4><blue>Decision trees</blue></h4>
+						<img class="fragment" src="plotly/tree_plot_dt_simple.svg">
+					</section>
+					
+					<section data-background-iframe="plotly/running_speed_dt_simple.html" data-background-interactive>
+					</section>
+					
+					<section data-background-color="#ffffff" class="center">
+						<img src="plotly/tree_plot_dt_medium.svg" height="100%" width="100%">
+					</section>
+					
+					<section data-background-iframe="plotly/running_speed_dt_medium.html" data-background-interactive>
+					</section>
+					
+					<section data-background-color="#ffffff" class="center">
+						<img src="plotly/tree_plot_dt_overfit.svg" height="100%" width="100%">
+					</section>
+					
+					<section data-background-iframe="plotly/running_speed_dt_overfit.html" data-background-interactive>
+						<h4 class="fragment">Oops</h4>
+					</section>
+					
+				</section>
+				
+				<section>
+					
+					<section class="center">
+						<h4><blue>Nearest neighors</blue></h4>
+						<img class="fragment" src="img/knn-classification.svg">
+						<br>
+						<small>(Image from <a href="https://commons.wikimedia.org/wiki/File:KnnClassification.svg">Wikimedia Commons)</a></small>
+					</section>
+					
+					<section data-background-color="#ffffff">
+					</section>
+					
+					<section data-background-iframe="plotly/running_speed_plain.html" data-background-interactive>
+					</section>
+					
+					<section data-background-iframe="plotly/running_speed_knn50.html" data-background-interactive>
+					</section>
+					
+					<section data-background-iframe="plotly/running_speed_knn5.html" data-background-interactive>
+					</section>
+					
+				</section>
+				
+				<section>
+					
+					<section class="center">
+						<h4><blue>Random forests</blue></h4>
+						<img class="fragment" src="img/ml-random-forest.svg", width="50%">
+						<br>
+						<small>(Image by <a href="https://brookewenig.github.io/">Brooke Wenig)</a></small>
+					</section>
+					
+					<section data-background-color="#ffffff">
+					</section>
+					
+					<section data-background-iframe="plotly/running_speed_plain.html" data-background-interactive>
+					</section>
+					
+					<section data-background-iframe="plotly/running_speed_rf100.html" data-background-interactive>
+					</section>
+					
+				</section>
+				
+				<section class="left">
+					<h3>Made-up dataset #2:</h3>
+					<h6>Cats versus dogs</h6>
+				</section>
+					
+				<section data-background-iframe="plotly/catdog_plain.html" data-background-interactive>
+				</section>
+				
+				<section>
+					
+					<section class="center">
+						<h4><blue>Linear models<blue></h4>
+						<small class="fragment">A logistic regression is a linear model<br>for binary classification problems:</small>
+						<br><br>
+						<code class="fragment">y = 1 / (1 + exp(-(<orange>a</orange> + <orange>b</orange>*x))</code>
+					</section>
+					
+					<section data-background-color="#ffffff">
+					</section>
+					
+					<section data-background-iframe="plotly/catdog_plain.html" data-background-interactive>
+					</section>
+					
+					<section data-background-iframe="plotly/catdog_lr_prbs.html" data-background-interactive>
+					</section>
+					
+					<section data-background-iframe="plotly/catdog_lr2_prbs.html" data-background-interactive>
+					</section>
+					
+					<section data-background-iframe="plotly/catdog_lr3_prbs.html" data-background-interactive>
+					</section>
+					
+				</section>
+				
+				<section>
+					
+					<section class="center">
+						<h4><blue>Decision tree</blue></h4>
+						<small class="fragment">Exactly the same as before, but now<br>with two variables to split on, e.g:</small>
+						<br><br>
+						<code class="fragment">weight > 100kg</code>
+						<br>
+						<code class="fragment">fur < 3cm</code>
+					</section>
+					
+					<section data-background-color="#ffffff">
+					</section>
+					
+					<section data-background-iframe="plotly/catdog_plain.html" data-background-interactive>
+					</section>
+					
+					<section data-background-iframe="plotly/catdog_dt_prbs.html" data-background-interactive>
+					</section>
+					
+					<section data-background-iframe="plotly/catdog_dt_pred.html" data-background-interactive>
+					</section>
+					
+					<section data-background-color="#ffffff" class="center">
+						<img src="plotly/tree_plot_catdog.svg" height="100%" width="100%">
+					</section>
+					
+				</section>
+				
+				<section>
+					
+					<section class="center">
+						<h4><blue>Nearest neighbours</blue></h4>
+						<small class="fragment">Exactly as before.</small>
+					</section>
+					
+					<section data-background-color="#ffffff">
+					</section>
+					
+					<section data-background-iframe="plotly/catdog_plain.html" data-background-interactive>
+					</section>
+					
+					<section data-background-iframe="plotly/catdog_knn15_prbs.html" data-background-interactive>
+					</section>
+					
+					<section data-background-iframe="plotly/catdog_knn5_prbs.html" data-background-interactive>
+					</section>
+					
+				</section>
+				
+				<section>
+					
+					<section class="center">
+						<h4><blue>Random forests</blue></h4>
+						<small class="fragment">Exactly as before.</small>
+					</section>
+					
+					<section data-background-color="#ffffff">
+					</section>
+					
+					<section data-background-iframe="plotly/catdog_plain.html" data-background-interactive>
+					</section>
+					
+					<section data-background-iframe="plotly/catdog_rf100_prbs.html" data-background-interactive>
+					</section>
+					
+				</section>
+				
+				<section class="left">
+					<h3>What didn't I cover?</h3>
+					<br>
+					<ul>
+						<li>Neural networks / 'deep learning'</li>
+						<ul>
+							<li>Way overkill for most datasets and problems</li>
+							<li>Common exceptions: images, text
+						</ul>
+						<br>
+						<li>Gradient boosting
+						<ul><li>Same general idea as random forests; often<br>performs much better</li></ul>
+					</ul>
+				</section>
+				
+				<section class="left">
+					<h2>Thank you!</h2>
+				</section>
+
+			</div>
+
+		</div>
+		
+
+		<script src="js/reveal.js"></script>
+		<script>
+			Reveal.initialize({
+				transitionSpeed: 'slow',
+				backgroundTransition: 'fade',
+				width: '95%',
+				height: '85%',
+			});
+		</script>
+	</body>
+</html>
